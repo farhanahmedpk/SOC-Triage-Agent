@@ -1,0 +1,57 @@
+============================================================
+  INCIDENT REPORT — IR-ALERT-0092
+  Generated : 2026-05-23T14:47:47.986220+00:00
+============================================================
+
+  VERDICT   : 🔴 ESCALATE TO TIER-2
+  SEVERITY  : Critical
+
+------------------------------------------------------------
+  ALERT DETAILS
+------------------------------------------------------------
+  Alert ID   : ALERT-0092
+  Type       : Data Exfiltration
+  Description: Unusually large data transfer to external IP detected.
+  Timestamp  : 2026-05-23T11:59:16.033844
+
+------------------------------------------------------------
+  AFFECTED ASSETS
+------------------------------------------------------------
+  Hostname   : WORKSTATION-005
+  Username   : guest
+
+------------------------------------------------------------
+  NETWORK ACTIVITY
+------------------------------------------------------------
+  Source IP  : 148.249.78.43
+  Dest Port  : 21
+  Protocol   : FTP
+  Bytes Sent : 37,858,398
+  Action     : allowed
+
+------------------------------------------------------------
+  THREAT INTELLIGENCE
+------------------------------------------------------------
+  IP Verdict : UNCONFIRMED (clean AbuseIPDB score)
+  Confidence : 0%
+  Reports    : 0
+  Country    : MX
+  ISP        : Grupo IRSA
+  TOR Node   : No
+
+------------------------------------------------------------
+  MITRE ATT&CK
+------------------------------------------------------------
+  Tactic     : Exfiltration
+  Technique  : T1048 - Exfiltration Over Alternative Protocol
+
+------------------------------------------------------------
+  RECOMMENDED ACTIONS
+------------------------------------------------------------
+  1. Block source IP at firewall
+  2. Isolate affected host
+  3. Preserve network logs for forensics
+  4. Identify what data was transferred
+  5. Notify data protection officer
+
+============================================================

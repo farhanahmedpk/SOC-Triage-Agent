@@ -1,0 +1,78 @@
+{
+  "run_timestamp": "2026-05-23T14:48:16.783518+00:00",
+  "total_processed": 10,
+  "total_escalated": 10,
+  "total_errors": 0,
+  "escalated_alerts": [
+    {
+      "alert_id": "ALERT-0088",
+      "alert_type": "Suspicious PowerShell Execution",
+      "severity": "High",
+      "source_ip": "135.53.114.130",
+      "verdict": "ESCALATE TO TIER-2"
+    },
+    {
+      "alert_id": "ALERT-0001",
+      "alert_type": "Data Exfiltration",
+      "severity": "Critical",
+      "source_ip": "198.199.119.161",
+      "verdict": "ESCALATE TO TIER-2"
+    },
+    {
+      "alert_id": "ALERT-0092",
+      "alert_type": "Data Exfiltration",
+      "severity": "Critical",
+      "source_ip": "148.249.78.43",
+      "verdict": "ESCALATE TO TIER-2"
+    },
+    {
+      "alert_id": "ALERT-0038",
+      "alert_type": "Phishing Email Link Clicked",
+      "severity": "High",
+      "source_ip": "222.2.240.123",
+      "verdict": "ESCALATE TO TIER-2"
+    },
+    {
+      "alert_id": "ALERT-0013",
+      "alert_type": "Phishing Email Link Clicked",
+      "severity": "High",
+      "source_ip": "223.229.232.22",
+      "verdict": "ESCALATE TO TIER-2"
+    },
+    {
+      "alert_id": "ALERT-0023",
+      "alert_type": "Brute Force Login",
+      "severity": "High",
+      "source_ip": "174.223.11.51",
+      "verdict": "ESCALATE TO TIER-2"
+    },
+    {
+      "alert_id": "ALERT-0004",
+      "alert_type": "Malware C2 Communication",
+      "severity": "Critical",
+      "source_ip": "198.199.119.161",
+      "verdict": "ESCALATE TO TIER-2"
+    },
+    {
+      "alert_id": "ALERT-0048",
+      "alert_type": "Brute Force Login",
+      "severity": "High",
+      "source_ip": "213.85.63.247",
+      "verdict": "ESCALATE TO TIER-2"
+    },
+    {
+      "alert_id": "ALERT-0015",
+      "alert_type": "Brute Force Login",
+      "severity": "High",
+      "source_ip": "185.220.101.45",
+      "verdict": "ESCALATE TO TIER-2"
+    },
+    {
+      "alert_id": "ALERT-0020",
+      "alert_type": "Brute Force Login",
+      "severity": "High",
+      "source_ip": "205.86.17.202",
+      "verdict": "ESCALATE TO TIER-2"
+    }
+  ]
+}

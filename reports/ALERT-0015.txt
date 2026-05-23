@@ -1,0 +1,56 @@
+============================================================
+  INCIDENT REPORT — IR-ALERT-0015
+  Generated : 2026-05-23T14:48:10.924481+00:00
+============================================================
+
+  VERDICT   : 🔴 ESCALATE TO TIER-2
+  SEVERITY  : High
+
+------------------------------------------------------------
+  ALERT DETAILS
+------------------------------------------------------------
+  Alert ID   : ALERT-0015
+  Type       : Brute Force Login
+  Description: Multiple failed login attempts detected from external IP.
+  Timestamp  : 2026-05-23T09:40:35.495286
+
+------------------------------------------------------------
+  AFFECTED ASSETS
+------------------------------------------------------------
+  Hostname   : WORKSTATION-007
+  Username   : ahmed.f
+
+------------------------------------------------------------
+  NETWORK ACTIVITY
+------------------------------------------------------------
+  Source IP  : 185.220.101.45
+  Dest Port  : 22
+  Protocol   : SSH
+  Bytes Sent : 15,746,451
+  Action     : blocked
+
+------------------------------------------------------------
+  THREAT INTELLIGENCE
+------------------------------------------------------------
+  IP Verdict : CONFIRMED MALICIOUS
+  Confidence : 100%
+  Reports    : 109
+  Country    : DE
+  ISP        : Network for Tor-Exit traffic.
+  TOR Node   : Yes 🧅
+
+------------------------------------------------------------
+  MITRE ATT&CK
+------------------------------------------------------------
+  Tactic     : Credential Access
+  Technique  : T1110 - Brute Force
+
+------------------------------------------------------------
+  RECOMMENDED ACTIONS
+------------------------------------------------------------
+  1. Block source IP at firewall
+  2. Enable account lockout policy
+  3. Check if any login succeeded
+  4. Enable MFA on targeted accounts
+
+============================================================

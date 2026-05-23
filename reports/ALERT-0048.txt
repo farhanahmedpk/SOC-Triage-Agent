@@ -1,0 +1,56 @@
+============================================================
+  INCIDENT REPORT — IR-ALERT-0048
+  Generated : 2026-05-23T14:48:07.235525+00:00
+============================================================
+
+  VERDICT   : 🔴 ESCALATE TO TIER-2
+  SEVERITY  : High
+
+------------------------------------------------------------
+  ALERT DETAILS
+------------------------------------------------------------
+  Alert ID   : ALERT-0048
+  Type       : Brute Force Login
+  Description: Multiple failed login attempts detected from external IP.
+  Timestamp  : 2026-05-23T10:10:52.564605
+
+------------------------------------------------------------
+  AFFECTED ASSETS
+------------------------------------------------------------
+  Hostname   : WORKSTATION-003
+  Username   : root
+
+------------------------------------------------------------
+  NETWORK ACTIVITY
+------------------------------------------------------------
+  Source IP  : 213.85.63.247
+  Dest Port  : 22
+  Protocol   : SSH
+  Bytes Sent : 10,965,534
+  Action     : blocked
+
+------------------------------------------------------------
+  THREAT INTELLIGENCE
+------------------------------------------------------------
+  IP Verdict : UNCONFIRMED (clean AbuseIPDB score)
+  Confidence : 0%
+  Reports    : 0
+  Country    : RU
+  ISP        : Russian Central Telegraph, Moscow
+  TOR Node   : No
+
+------------------------------------------------------------
+  MITRE ATT&CK
+------------------------------------------------------------
+  Tactic     : Credential Access
+  Technique  : T1110 - Brute Force
+
+------------------------------------------------------------
+  RECOMMENDED ACTIONS
+------------------------------------------------------------
+  1. Block source IP at firewall
+  2. Enable account lockout policy
+  3. Check if any login succeeded
+  4. Enable MFA on targeted accounts
+
+============================================================

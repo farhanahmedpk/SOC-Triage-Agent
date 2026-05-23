@@ -1,0 +1,57 @@
+============================================================
+  INCIDENT REPORT — IR-ALERT-0004
+  Generated : 2026-05-23T14:48:03.754921+00:00
+============================================================
+
+  VERDICT   : 🔴 ESCALATE TO TIER-2
+  SEVERITY  : Critical
+
+------------------------------------------------------------
+  ALERT DETAILS
+------------------------------------------------------------
+  Alert ID   : ALERT-0004
+  Type       : Malware C2 Communication
+  Description: Suspected C2 beacon traffic to known malicious domain.
+  Timestamp  : 2026-05-23T10:15:29.489274
+
+------------------------------------------------------------
+  AFFECTED ASSETS
+------------------------------------------------------------
+  Hostname   : SERVER-04
+  Username   : m.ali
+
+------------------------------------------------------------
+  NETWORK ACTIVITY
+------------------------------------------------------------
+  Source IP  : 198.199.119.161
+  Dest Port  : 443
+  Protocol   : HTTPS
+  Bytes Sent : 21,535,757
+  Action     : allowed
+
+------------------------------------------------------------
+  THREAT INTELLIGENCE
+------------------------------------------------------------
+  IP Verdict : UNCONFIRMED (clean AbuseIPDB score)
+  Confidence : 0%
+  Reports    : 0
+  Country    : US
+  ISP        : DigitalOcean, LLC
+  TOR Node   : No
+
+------------------------------------------------------------
+  MITRE ATT&CK
+------------------------------------------------------------
+  Tactic     : Command and Control
+  Technique  : T1071 - Application Layer Protocol
+
+------------------------------------------------------------
+  RECOMMENDED ACTIONS
+------------------------------------------------------------
+  1. Isolate affected host immediately
+  2. Block source IP at firewall
+  3. Capture memory dump for forensics
+  4. Scan all hosts for similar C2 indicators
+  5. Notify incident response team
+
+============================================================
