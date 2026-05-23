@@ -1,1 +1,6 @@
+# Add to .gitignore if not already there:
+reports/
+*.env
 .env
+__pycache__/
+.venv/
