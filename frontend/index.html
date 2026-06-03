@@ -676,7 +676,7 @@ function renderTable(alerts) {
     const stClass  = 'st-' + (a.status || 'open').toLowerCase();
     return `
       <tr class="alert-row ${selectedAlert?.alert_id === a.alert_id ? 'selected' : ''}"
-          onclick="selectAlert(${JSON.stringify(a).replace(/"/g, '&quot;')})">
+          onclick="selectAlert(this, ${alerts.indexOf(a)})">
         <td><span class="severity-badge ${sevClass}">${a.severity || '—'}</span></td>
         <td style="font-size:12px; max-width:160px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${a.alert_type || '—'}</td>
         <td class="ip-cell">${a.source_ip || '—'}</td>
@@ -701,16 +701,12 @@ function renderTable(alerts) {
 }
 
 // Select alert
-function selectAlert(alert) {
-  selectedAlert = alert;
+function selectAlert(el, idx) {
+  selectedAlert = allAlerts[idx];
   document.getElementById('reportBtn').disabled = false;
-
-  // Highlight row
   document.querySelectorAll('.alert-row').forEach(r => r.classList.remove('selected'));
-  event.currentTarget.classList.add('selected');
-
-  // Auto-lookup IP
-  document.getElementById('ipInput').value = alert.source_ip || '';
+  el.classList.add('selected');
+  document.getElementById('ipInput').value = selectedAlert.source_ip || '';
   lookupIP();
 }
 
