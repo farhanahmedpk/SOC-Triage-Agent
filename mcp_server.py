@@ -15,6 +15,12 @@ def get_es():
 
 mcp = FastMCP("SOC Triage Agent", host="0.0.0.0")
 
+from starlette.requests import Request
+from starlette.responses import JSONResponse
+
+async def health(request: Request):
+    return JSONResponse({"status": "SOC Triage Agent MCP Server running", "tools": 9})
+
 @mcp.tool()
 def get_alert_summary() -> str:
     """Get a dashboard summary of all alerts: total count, breakdown by severity, and top alert types."""
@@ -156,14 +162,16 @@ def search_by_mitre_tactic(tactic: str, limit: int = 20) -> str:
 
 if __name__ == "__main__":
     import uvicorn
+    from starlette.routing import Route
+    from starlette.applications import Starlette
+    
     port = int(os.environ.get("PORT", 8080))
-    app = mcp.streamable_http_app()
-    uvicorn.run(
-        app,
-        host="0.0.0.0",
-        port=port,
-        proxy_headers=True,
-        forwarded_allow_ips="*",
-        server_header=False,
-        date_header=False
-    )
+    mcp_app = mcp.streamable_http_app()
+    
+    app = Starlette(routes=[
+        Route("/", health),
+        Route("/health", health),
+    ])
+    app.mount("/mcp", mcp_app)
+    
+    uvicorn.run(app, host="0.0.0.0", port=port, proxy_headers=True, forwarded_allow_ips="*")
