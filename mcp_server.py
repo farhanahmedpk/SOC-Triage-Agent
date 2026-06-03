@@ -41,9 +41,9 @@ def get_alert_summary() -> str:
 def get_open_alerts(severity: str = "", limit: int = 10) -> str:
     """Fetch open security alerts from Elasticsearch SIEM, optionally filtered by severity (Critical, High, Medium, Low)."""
     es = get_es()
-    query = {"bool": {"must": [{"term": {"status.keyword": "open"}}]}}
+    query = {"bool": {"must": [{"match": {"status": "open"}}]}}
     if severity:
-        query["bool"]["must"].append({"term": {"severity.keyword": severity}})
+        query["bool"]["must"].append({"match": {"severity": severity}})
     result = es.search(index=INDEX, body={"size": limit, "query": query, "sort": [{"timestamp": {"order": "desc"}}]})
     alerts = [hit["_source"] for hit in result["hits"]["hits"]]
     return json.dumps(alerts, default=str)
@@ -55,7 +55,7 @@ def get_critical_alerts(hours: int = 720, limit: int = 20) -> str:
     result = es.search(index=INDEX, body={
         "size": limit,
         "query": {"bool": {"must": [
-            {"terms": {"severity.keyword": ["Critical", "High"]}},
+            {"terms": {"severity": ["Critical", "High"]}},
             {"range": {"timestamp": {"gte": f"now-{hours*24}h"}}}
         ]}},
         "sort": [{"timestamp": {"order": "desc"}}]
@@ -160,18 +160,47 @@ def search_by_mitre_tactic(tactic: str, limit: int = 20) -> str:
     alerts = [hit["_source"] for hit in result["hits"]["hits"]]
     return json.dumps(alerts, default=str)
 
+from starlette.requests import Request
+from starlette.responses import JSONResponse
+
+async def call_tool_endpoint(request: Request):
+    body = await request.json()
+    tool_name = body.get("name")
+    params = body.get("parameters", {})
+    tool_map = {
+        "get_open_alerts": get_open_alerts,
+        "get_critical_alerts": get_critical_alerts,
+        "get_alert_summary": get_alert_summary,
+        "search_alerts_by_ip": search_alerts_by_ip,
+        "search_alerts_by_host": search_alerts_by_host,
+        "check_ip_reputation": check_ip_reputation,
+        "generate_incident_report": generate_incident_report,
+        "update_alert_status": update_alert_status,
+        "search_by_mitre_tactic": search_by_mitre_tactic,
+    }
+    if tool_name not in tool_map:
+        return JSONResponse({"error": f"Unknown tool: {tool_name}"}, status_code=400)
+    try:
+        result = tool_map[tool_name](**params)
+        return JSONResponse({"result": json.loads(result)})
+    except Exception as e:
+        return JSONResponse({"error": str(e)}, status_code=500)
+
 if __name__ == "__main__":
     import uvicorn
     from starlette.routing import Route
     from starlette.applications import Starlette
-    
+    from starlette.middleware.cors import CORSMiddleware
+
     port = int(os.environ.get("PORT", 8080))
     mcp_app = mcp.streamable_http_app()
-    
+
     app = Starlette(routes=[
         Route("/", health),
         Route("/health", health),
+        Route("/mcp/tools/call", call_tool_endpoint, methods=["POST"]),
     ])
+    app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
     app.mount("/mcp", mcp_app)
-    
+
     uvicorn.run(app, host="0.0.0.0", port=port, proxy_headers=True, forwarded_allow_ips="*")
