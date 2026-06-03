@@ -113,7 +113,7 @@ def check_ip_reputation(ip_address: str) -> str:
 def generate_incident_report(alert_id: str) -> str:
     """Generate a full structured incident report for a security alert."""
     es = get_es()
-    result = es.search(index=INDEX, body={"query": {"term": {"alert_id.keyword": alert_id}}})
+    result = es.search(index=INDEX, body={"query": {"match": {"alert_id": alert_id}}})
     if not result["hits"]["hits"]:
         return json.dumps({"error": f"Alert {alert_id} not found"})
     alert = result["hits"]["hits"][0]["_source"]

@@ -751,9 +751,21 @@ async function generateReport() {
     '<div class="loading"><div class="spinner"></div> Generating report...</div>';
   try {
     const r = await callTool('generate_incident_report', { alert_id: selectedAlert.alert_id });
-    const reportText = r.report_text || JSON.stringify(r, null, 2);
-    document.getElementById('reportContainer').innerHTML =
-      `<div class="report-content">${reportText}</div>`;
+    const a = r.alert || {};
+    const ti = r.threat_intelligence || {};
+    const html = `
+        <div class="rep-row"><span class="rep-key">Report ID</span><span class="rep-val">${r.report_id||'—'}</span></div>
+        <div class="rep-row"><span class="rep-key">Verdict</span><span class="rep-val" style="color:${r.verdict==='ESCALATE TO TIER-2'?'#ff4444':r.verdict==='MONITOR & INVESTIGATE'?'#ffaa00':'#00ff88'}">${r.verdict||'—'}</span></div>
+        <div class="rep-row"><span class="rep-key">Alert Type</span><span class="rep-val">${a.alert_type||'—'}</span></div>
+        <div class="rep-row"><span class="rep-key">Severity</span><span class="rep-val">${a.severity||'—'}</span></div>
+        <div class="rep-row"><span class="rep-key">Source IP</span><span class="rep-val">${a.source_ip||'—'}</span></div>
+        <div class="rep-row"><span class="rep-key">Host</span><span class="rep-val">${a.hostname||'—'}</span></div>
+        <div class="rep-row"><span class="rep-key">MITRE</span><span class="rep-val">${a.mitre_technique||'—'}</span></div>
+        <div class="rep-row"><span class="rep-key">IP Verdict</span><span class="rep-val">${ti.is_malicious?'⚠ MALICIOUS':'✓ CLEAN'}</span></div>
+        <div class="rep-row"><span class="rep-key">ISP</span><span class="rep-val">${ti.isp||'—'}</span></div>
+        <div style="margin-top:8px;font-size:11px;color:#aaa;"><b>Actions:</b><br>${(r.recommended_actions||[]).map(x=>'• '+x).join('<br>')}</div>
+    `;
+    document.getElementById('reportContainer').innerHTML = `<div class="report-content">${html}</div>`;
   } catch(e) {
     document.getElementById('reportContainer').innerHTML =
       `<div class="empty">Error: ${e.message}</div>`;
