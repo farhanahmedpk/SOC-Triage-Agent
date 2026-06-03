@@ -34,23 +34,15 @@
     overflow-x: hidden;
   }
 
-  /* Scanline overlay */
   body::before {
     content: '';
     position: fixed;
     inset: 0;
-    background: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(0,212,255,0.015) 2px,
-      rgba(0,212,255,0.015) 4px
-    );
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,212,255,0.015) 2px, rgba(0,212,255,0.015) 4px);
     pointer-events: none;
     z-index: 9999;
   }
 
-  /* Header */
   header {
     display: flex;
     align-items: center;
@@ -63,11 +55,7 @@
     z-index: 100;
   }
 
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
+  .logo { display: flex; align-items: center; gap: 12px; }
 
   .logo-icon {
     width: 32px; height: 32px;
@@ -84,35 +72,12 @@
     50%       { box-shadow: 0 0 24px rgba(0,212,255,0.6); }
   }
 
-  .logo-text {
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    color: var(--accent);
-    text-transform: uppercase;
-  }
+  .logo-text { font-size: 18px; font-weight: 700; letter-spacing: 2px; color: var(--accent); text-transform: uppercase; }
+  .logo-sub  { font-family: var(--mono); font-size: 10px; color: var(--text-dim); letter-spacing: 1px; }
 
-  .logo-sub {
-    font-family: var(--mono);
-    font-size: 10px;
-    color: var(--text-dim);
-    letter-spacing: 1px;
-  }
+  .header-right { display: flex; align-items: center; gap: 20px; }
 
-  .header-right {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .status-dot {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--accent2);
-  }
+  .status-dot { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 11px; color: var(--accent2); }
 
   .dot {
     width: 8px; height: 8px;
@@ -122,21 +87,12 @@
     animation: blink 1.5s ease-in-out infinite;
   }
 
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0.3; }
-  }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-  .timestamp {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--text-dim);
-  }
+  .timestamp { font-family: var(--mono); font-size: 11px; color: var(--text-dim); }
 
-  /* Layout */
   .container { padding: 24px 28px; max-width: 1400px; margin: 0 auto; }
 
-  /* Stats row */
   .stats-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -151,57 +107,27 @@
     padding: 16px 20px;
     position: relative;
     overflow: hidden;
-    transition: border-color 0.2s;
   }
 
-  .stat-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-  }
-
-  .stat-card.total::before  { background: var(--accent); }
+  .stat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
+  .stat-card.total::before    { background: var(--accent); }
   .stat-card.critical::before { background: var(--red); }
-  .stat-card.high::before   { background: var(--orange); }
-  .stat-card.medium::before { background: var(--yellow); }
-  .stat-card.low::before    { background: var(--green); }
+  .stat-card.high::before     { background: var(--orange); }
+  .stat-card.medium::before   { background: var(--yellow); }
+  .stat-card.low::before      { background: var(--green); }
 
-  .stat-label {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 2px;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    margin-bottom: 8px;
-  }
+  .stat-label { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; color: var(--text-dim); text-transform: uppercase; margin-bottom: 8px; }
+  .stat-value { font-size: 36px; font-weight: 700; line-height: 1; }
 
-  .stat-value {
-    font-size: 36px;
-    font-weight: 700;
-    line-height: 1;
-  }
-
-  .stat-card.total .stat-value   { color: var(--accent); }
+  .stat-card.total .stat-value    { color: var(--accent); }
   .stat-card.critical .stat-value { color: var(--red); }
-  .stat-card.high .stat-value    { color: var(--orange); }
-  .stat-card.medium .stat-value  { color: var(--yellow); }
-  .stat-card.low .stat-value     { color: var(--green); }
+  .stat-card.high .stat-value     { color: var(--orange); }
+  .stat-card.medium .stat-value   { color: var(--yellow); }
+  .stat-card.low .stat-value      { color: var(--green); }
 
-  /* Main grid */
-  .main-grid {
-    display: grid;
-    grid-template-columns: 1fr 380px;
-    gap: 20px;
-  }
+  .main-grid { display: grid; grid-template-columns: 1fr 380px; gap: 20px; }
 
-  /* Panel */
-  .panel {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-  }
+  .panel { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
 
   .panel-header {
     display: flex;
@@ -212,117 +138,38 @@
     background: var(--bg3);
   }
 
-  .panel-title {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 2px;
-    color: var(--accent);
-    text-transform: uppercase;
-  }
-
+  .panel-title { font-family: var(--mono); font-size: 11px; letter-spacing: 2px; color: var(--accent); text-transform: uppercase; }
   .panel-actions { display: flex; gap: 8px; }
 
-  /* Buttons */
-  .btn {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 1px;
-    padding: 6px 14px;
-    border-radius: 4px;
-    cursor: pointer;
-    border: 1px solid;
-    text-transform: uppercase;
-    transition: all 0.15s;
-  }
-
-  .btn-primary {
-    background: rgba(0,212,255,0.1);
-    border-color: var(--accent);
-    color: var(--accent);
-  }
-
-  .btn-primary:hover {
-    background: rgba(0,212,255,0.2);
-    box-shadow: 0 0 12px rgba(0,212,255,0.2);
-  }
-
-  .btn-danger {
-    background: rgba(255,59,92,0.1);
-    border-color: var(--red);
-    color: var(--red);
-  }
-
-  .btn-danger:hover { background: rgba(255,59,92,0.2); }
-
+  .btn { font-family: var(--mono); font-size: 11px; letter-spacing: 1px; padding: 6px 14px; border-radius: 4px; cursor: pointer; border: 1px solid; text-transform: uppercase; transition: all 0.15s; }
+  .btn-primary { background: rgba(0,212,255,0.1); border-color: var(--accent); color: var(--accent); }
+  .btn-primary:hover { background: rgba(0,212,255,0.2); box-shadow: 0 0 12px rgba(0,212,255,0.2); }
   .btn-sm { padding: 4px 10px; font-size: 10px; }
 
-  /* Alert table */
   .alert-table { width: 100%; border-collapse: collapse; }
-
-  .alert-table th {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 1px;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    padding: 10px 16px;
-    text-align: left;
-    border-bottom: 1px solid var(--border);
-    background: var(--bg3);
-  }
-
-  .alert-table td {
-    padding: 12px 16px;
-    border-bottom: 1px solid rgba(26,45,66,0.5);
-    font-size: 13px;
-    vertical-align: middle;
-  }
+  .alert-table th { font-family: var(--mono); font-size: 10px; letter-spacing: 1px; color: var(--text-dim); text-transform: uppercase; padding: 10px 16px; text-align: left; border-bottom: 1px solid var(--border); background: var(--bg3); }
+  .alert-table td { padding: 10px 16px; border-bottom: 1px solid rgba(26,45,66,0.5); font-size: 13px; vertical-align: middle; }
 
   .alert-row { transition: background 0.15s; cursor: pointer; }
-  .alert-row:hover { background: rgba(0,212,255,0.04); }
+  .alert-row:hover    { background: rgba(0,212,255,0.04); }
   .alert-row.selected { background: rgba(0,212,255,0.08); }
 
-  .severity-badge {
-    font-family: var(--mono);
-    font-size: 10px;
-    padding: 3px 8px;
-    border-radius: 3px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 600;
-  }
-
-  .sev-critical { background: rgba(255,59,92,0.15); color: var(--red); border: 1px solid rgba(255,59,92,0.3); }
+  .severity-badge { font-family: var(--mono); font-size: 10px; padding: 3px 8px; border-radius: 3px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+  .sev-critical { background: rgba(255,59,92,0.15);  color: var(--red);    border: 1px solid rgba(255,59,92,0.3); }
   .sev-high     { background: rgba(255,123,44,0.15); color: var(--orange); border: 1px solid rgba(255,123,44,0.3); }
   .sev-medium   { background: rgba(255,212,38,0.15); color: var(--yellow); border: 1px solid rgba(255,212,38,0.3); }
-  .sev-low      { background: rgba(0,255,157,0.15); color: var(--green); border: 1px solid rgba(0,255,157,0.3); }
+  .sev-low      { background: rgba(0,255,157,0.15);  color: var(--green);  border: 1px solid rgba(0,255,157,0.3); }
 
-  .status-badge {
-    font-family: var(--mono);
-    font-size: 10px;
-    padding: 2px 8px;
-    border-radius: 3px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
+  .status-badge { font-family: var(--mono); font-size: 10px; padding: 2px 8px; border-radius: 3px; text-transform: uppercase; letter-spacing: 1px; }
+  .st-open          { color: var(--accent);   border: 1px solid rgba(0,212,255,0.3); }
+  .st-escalated     { color: var(--red);      border: 1px solid rgba(255,59,92,0.3); }
+  .st-investigating { color: var(--yellow);   border: 1px solid rgba(255,212,38,0.3); }
+  .st-closed        { color: var(--text-dim); border: 1px solid var(--border); }
 
-  .st-open        { color: var(--accent); border: 1px solid rgba(0,212,255,0.3); }
-  .st-escalated   { color: var(--red); border: 1px solid rgba(255,59,92,0.3); }
-  .st-investigating { color: var(--yellow); border: 1px solid rgba(255,212,38,0.3); }
-  .st-closed      { color: var(--text-dim); border: 1px solid var(--border); }
+  .ip-cell { font-family: var(--mono); font-size: 12px; color: var(--text-dim); }
 
-  .ip-cell {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--text-dim);
-  }
-
-  .ip-malicious { color: var(--red) !important; }
-
-  /* Right panel */
   .right-panel { display: flex; flex-direction: column; gap: 16px; }
 
-  /* IP lookup */
   .input-group { display: flex; gap: 8px; padding: 16px; }
 
   .input-field {
@@ -337,174 +184,74 @@
     outline: none;
     transition: border-color 0.15s;
   }
-
   .input-field:focus { border-color: var(--accent); }
   .input-field::placeholder { color: var(--text-dim); }
 
-  .rep-result {
-    padding: 0 16px 16px;
-    font-family: var(--mono);
-    font-size: 12px;
-    line-height: 1.8;
-  }
-
-  .rep-row { display: flex; justify-content: space-between; }
-  .rep-key { color: var(--text-dim); }
-  .rep-val { color: var(--text); }
+  .rep-result { padding: 0 16px 16px; font-family: var(--mono); font-size: 12px; }
+  .rep-row    { display: flex; justify-content: space-between; margin-bottom: 4px; }
+  .rep-key    { color: var(--text-dim); }
+  .rep-val    { color: var(--text); }
   .rep-malicious { color: var(--red); font-weight: 700; }
-  .rep-clean { color: var(--green); }
+  .rep-clean     { color: var(--green); }
 
-  /* Report panel */
+  /* Incident report - compact */
   .report-content {
-    padding: 16px;
+    padding: 12px 16px;
     font-family: var(--mono);
     font-size: 11px;
-    line-height: 1.7;
+    line-height: 1.5;
     color: var(--text);
-    max-height: 400px;
+    max-height: 420px;
     overflow-y: auto;
-    white-space: pre-wrap;
-    word-break: break-word;
   }
-
   .report-content::-webkit-scrollbar { width: 4px; }
   .report-content::-webkit-scrollbar-track { background: var(--bg); }
   .report-content::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
-  /* Loading */
-  .loading {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 20px 16px;
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--text-dim);
+  .rpt-section {
+    border-top: 1px solid var(--border);
+    padding: 8px 0 4px;
+    margin-top: 4px;
   }
+  .rpt-section:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+  .rpt-section-title { font-size: 9px; letter-spacing: 2px; color: var(--accent); text-transform: uppercase; margin-bottom: 6px; }
+  .rpt-row  { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 3px; }
+  .rpt-key  { color: var(--text-dim); flex-shrink: 0; }
+  .rpt-val  { color: var(--text); text-align: right; max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .rpt-verdict-escalate { color: var(--red);    font-weight: 700; }
+  .rpt-verdict-monitor  { color: var(--yellow); font-weight: 700; }
+  .rpt-verdict-close    { color: var(--green);  font-weight: 700; }
+  .rpt-actions { margin-top: 4px; }
+  .rpt-action-item { color: var(--text-dim); margin-bottom: 2px; }
+  .rpt-action-item::before { content: '›  '; color: var(--accent); }
 
-  .spinner {
-    width: 14px; height: 14px;
-    border: 2px solid var(--border);
-    border-top-color: var(--accent);
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-  }
-
+  .loading { display: flex; align-items: center; gap: 10px; padding: 20px 16px; font-family: var(--mono); font-size: 12px; color: var(--text-dim); }
+  .spinner { width: 14px; height: 14px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  /* Empty state */
-  .empty {
-    padding: 40px;
-    text-align: center;
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--text-dim);
-  }
+  .empty { padding: 40px; text-align: center; font-family: var(--mono); font-size: 12px; color: var(--text-dim); }
 
-  /* Filter bar */
-  .filter-bar {
-    display: flex;
-    gap: 8px;
-    padding: 12px 16px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .filter-btn {
-    font-family: var(--mono);
-    font-size: 10px;
-    padding: 4px 10px;
-    border-radius: 3px;
-    cursor: pointer;
-    border: 1px solid var(--border);
-    background: transparent;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: all 0.15s;
-  }
-
-  .filter-btn.active, .filter-btn:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    background: rgba(0,212,255,0.08);
-  }
-
-  .filter-btn.f-critical.active { border-color: var(--red); color: var(--red); background: rgba(255,59,92,0.08); }
+  .filter-bar { display: flex; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--border); }
+  .filter-btn { font-family: var(--mono); font-size: 10px; padding: 4px 10px; border-radius: 3px; cursor: pointer; border: 1px solid var(--border); background: transparent; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; transition: all 0.15s; }
+  .filter-btn.active, .filter-btn:hover { border-color: var(--accent); color: var(--accent); background: rgba(0,212,255,0.08); }
+  .filter-btn.f-critical.active { border-color: var(--red);    color: var(--red);    background: rgba(255,59,92,0.08); }
   .filter-btn.f-high.active     { border-color: var(--orange); color: var(--orange); background: rgba(255,123,44,0.08); }
   .filter-btn.f-medium.active   { border-color: var(--yellow); color: var(--yellow); background: rgba(255,212,38,0.08); }
-  .filter-btn.f-low.active      { border-color: var(--green); color: var(--green); background: rgba(0,255,157,0.08); }
+  .filter-btn.f-low.active      { border-color: var(--green);  color: var(--green);  background: rgba(0,255,157,0.08); }
 
-  /* Triage run button */
-  .triage-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 20px;
-    background: rgba(0,212,255,0.04);
-    border-bottom: 1px solid var(--border);
-  }
+  .triage-bar { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; background: rgba(0,212,255,0.04); border-bottom: 1px solid var(--border); }
+  .triage-info { font-family: var(--mono); font-size: 11px; color: var(--text-dim); }
 
-  .triage-info {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--text-dim);
-  }
+  .btn-triage { font-family: var(--mono); font-size: 11px; padding: 8px 20px; border-radius: 4px; cursor: pointer; border: 1px solid var(--accent2); background: rgba(0,255,157,0.1); color: var(--accent2); text-transform: uppercase; letter-spacing: 1px; transition: all 0.15s; }
+  .btn-triage:hover    { background: rgba(0,255,157,0.2); box-shadow: 0 0 16px rgba(0,255,157,0.2); }
+  .btn-triage:disabled { opacity: 0.4; cursor: not-allowed; }
 
-  .btn-triage {
-    font-family: var(--mono);
-    font-size: 11px;
-    padding: 8px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    border: 1px solid var(--accent2);
-    background: rgba(0,255,157,0.1);
-    color: var(--accent2);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: all 0.15s;
-  }
-
-  .btn-triage:hover {
-    background: rgba(0,255,157,0.2);
-    box-shadow: 0 0 16px rgba(0,255,157,0.2);
-  }
-
-  .btn-triage:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-  }
-
-  /* Scrollable table wrapper */
   .table-wrapper { overflow-x: auto; max-height: 420px; overflow-y: auto; }
   .table-wrapper::-webkit-scrollbar { width: 4px; height: 4px; }
   .table-wrapper::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
-  /* Verdict badge */
-  .verdict-escalate { color: var(--red); font-family: var(--mono); font-size: 10px; }
-  .verdict-monitor  { color: var(--yellow); font-family: var(--mono); font-size: 10px; }
-  .verdict-close    { color: var(--text-dim); font-family: var(--mono); font-size: 10px; }
-
-  /* Notification */
-  .notif {
-    position: fixed;
-    bottom: 24px; right: 24px;
-    background: var(--bg3);
-    border: 1px solid var(--accent);
-    border-radius: 6px;
-    padding: 12px 18px;
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--accent);
-    box-shadow: 0 0 20px rgba(0,212,255,0.2);
-    z-index: 9000;
-    animation: slideIn 0.3s ease;
-    max-width: 320px;
-  }
-
-  @keyframes slideIn {
-    from { transform: translateX(20px); opacity: 0; }
-    to   { transform: translateX(0); opacity: 1; }
-  }
+  .notif { position: fixed; bottom: 24px; right: 24px; background: var(--bg3); border: 1px solid var(--accent); border-radius: 6px; padding: 12px 18px; font-family: var(--mono); font-size: 12px; color: var(--accent); box-shadow: 0 0 20px rgba(0,212,255,0.2); z-index: 9000; animation: slideIn 0.3s ease; max-width: 320px; }
+  @keyframes slideIn { from { transform: translateX(20px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 </style>
 </head>
 <body>
@@ -524,8 +271,6 @@
 </header>
 
 <div class="container">
-
-  <!-- Stats -->
   <div class="stats-grid" id="statsGrid">
     <div class="stat-card total">
       <div class="stat-label">Total Alerts</div>
@@ -550,8 +295,6 @@
   </div>
 
   <div class="main-grid">
-
-    <!-- Alert Queue -->
     <div class="panel">
       <div class="panel-header">
         <span class="panel-title">⚡ Alert Queue</span>
@@ -559,12 +302,10 @@
           <button class="btn btn-primary btn-sm" onclick="loadAlerts()">Refresh</button>
         </div>
       </div>
-
       <div class="triage-bar">
         <span class="triage-info" id="triageInfo">Select severity filter and load alerts</span>
         <button class="btn-triage" id="triageBtn" onclick="runTriage()">▶ Run Triage</button>
       </div>
-
       <div class="filter-bar">
         <button class="filter-btn active" data-filter="all" onclick="setFilter('all', this)">All</button>
         <button class="filter-btn f-critical" data-filter="Critical" onclick="setFilter('Critical', this)">Critical</button>
@@ -572,7 +313,6 @@
         <button class="filter-btn f-medium" data-filter="Medium" onclick="setFilter('Medium', this)">Medium</button>
         <button class="filter-btn f-low" data-filter="Low" onclick="setFilter('Low', this)">Low</button>
       </div>
-
       <div class="table-wrapper">
         <div id="alertTableContainer">
           <div class="loading"><div class="spinner"></div> Loading alerts...</div>
@@ -580,10 +320,7 @@
       </div>
     </div>
 
-    <!-- Right panels -->
     <div class="right-panel">
-
-      <!-- IP Lookup -->
       <div class="panel">
         <div class="panel-header">
           <span class="panel-title">🔍 IP Reputation</span>
@@ -595,7 +332,6 @@
         <div id="repResult"></div>
       </div>
 
-      <!-- Incident Report -->
       <div class="panel" style="flex:1">
         <div class="panel-header">
           <span class="panel-title">📋 Incident Report</span>
@@ -607,7 +343,6 @@
           <div class="empty">Select an alert to generate<br>an incident report</div>
         </div>
       </div>
-
     </div>
   </div>
 </div>
@@ -618,12 +353,10 @@ let allAlerts = [];
 let selectedAlert = null;
 let currentFilter = 'all';
 
-// Clock
 setInterval(() => {
   document.getElementById('clock').textContent = new Date().toUTCString().slice(17, 25) + ' UTC';
 }, 1000);
 
-// Call MCP tool
 async function callTool(name, parameters = {}) {
   const res = await fetch(`${API}/mcp/tools/call`, {
     method: 'POST',
@@ -635,7 +368,6 @@ async function callTool(name, parameters = {}) {
   return data.result;
 }
 
-// Load stats
 async function loadStats() {
   try {
     const r = await callTool('get_alert_summary');
@@ -647,7 +379,6 @@ async function loadStats() {
   } catch(e) { console.error('Stats error:', e); }
 }
 
-// Load alerts
 async function loadAlerts() {
   document.getElementById('alertTableContainer').innerHTML =
     '<div class="loading"><div class="spinner"></div> Fetching alerts...</div>';
@@ -658,49 +389,34 @@ async function loadAlerts() {
     renderTable(allAlerts);
     document.getElementById('triageInfo').textContent = `${allAlerts.length} alerts loaded`;
   } catch(e) {
-    document.getElementById('alertTableContainer').innerHTML =
-      `<div class="empty">Error: ${e.message}</div>`;
+    document.getElementById('alertTableContainer').innerHTML = `<div class="empty">Error: ${e.message}</div>`;
   }
 }
 
-// Render table
 function renderTable(alerts) {
   if (!alerts.length) {
-    document.getElementById('alertTableContainer').innerHTML =
-      '<div class="empty">No alerts found</div>';
+    document.getElementById('alertTableContainer').innerHTML = '<div class="empty">No alerts found</div>';
     return;
   }
-
-  const rows = alerts.map(a => {
+  const rows = alerts.map((a, i) => {
     const sevClass = 'sev-' + (a.severity || 'low').toLowerCase();
-    const stClass  = 'st-' + (a.status || 'open').toLowerCase();
+    const stClass  = 'st-'  + (a.status   || 'open').toLowerCase();
     return `
-      <tr class="alert-row ${selectedAlert?.alert_id === a.alert_id ? 'selected' : ''}"
-          onclick="selectAlert(this, ${alerts.indexOf(a)})">
+      <tr class="alert-row ${selectedAlert?.alert_id === a.alert_id ? 'selected' : ''}" onclick="selectAlert(this, ${i})">
         <td><span class="severity-badge ${sevClass}">${a.severity || '—'}</span></td>
-        <td style="font-size:12px; max-width:160px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${a.alert_type || '—'}</td>
+        <td style="font-size:12px;max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${a.alert_type || '—'}</td>
         <td class="ip-cell">${a.source_ip || '—'}</td>
-        <td style="font-size:12px; color:var(--text-dim)">${a.hostname || '—'}</td>
+        <td style="font-size:12px;color:var(--text-dim)">${a.hostname || '—'}</td>
         <td><span class="status-badge ${stClass}">${a.status || 'open'}</span></td>
       </tr>`;
   }).join('');
-
   document.getElementById('alertTableContainer').innerHTML = `
     <table class="alert-table">
-      <thead>
-        <tr>
-          <th>Severity</th>
-          <th>Type</th>
-          <th>Source IP</th>
-          <th>Host</th>
-          <th>Status</th>
-        </tr>
-      </thead>
+      <thead><tr><th>Severity</th><th>Type</th><th>Source IP</th><th>Host</th><th>Status</th></tr></thead>
       <tbody>${rows}</tbody>
     </table>`;
 }
 
-// Select alert
 function selectAlert(el, idx) {
   selectedAlert = allAlerts[idx];
   document.getElementById('reportBtn').disabled = false;
@@ -710,7 +426,6 @@ function selectAlert(el, idx) {
   lookupIP();
 }
 
-// Filter
 function setFilter(f, btn) {
   currentFilter = f;
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -718,21 +433,16 @@ function setFilter(f, btn) {
   loadAlerts();
 }
 
-// IP Lookup
 async function lookupIP() {
   const ip = document.getElementById('ipInput').value.trim();
   if (!ip) return;
-  document.getElementById('repResult').innerHTML =
-    '<div class="loading"><div class="spinner"></div> Checking...</div>';
+  document.getElementById('repResult').innerHTML = '<div class="loading"><div class="spinner"></div> Checking...</div>';
   try {
     const r = await callTool('check_ip_reputation', { ip_address: ip });
     const malicious = r.is_malicious;
     document.getElementById('repResult').innerHTML = `
       <div class="rep-result">
-        <div class="rep-row">
-          <span class="rep-key">Verdict</span>
-          <span class="${malicious ? 'rep-malicious' : 'rep-clean'}">${malicious ? '⚠ MALICIOUS' : '✓ CLEAN'}</span>
-        </div>
+        <div class="rep-row"><span class="rep-key">Verdict</span><span class="${malicious ? 'rep-malicious' : 'rep-clean'}">${malicious ? '⚠ MALICIOUS' : '✓ CLEAN'}</span></div>
         <div class="rep-row"><span class="rep-key">Confidence</span><span class="rep-val">${r.confidence_score}%</span></div>
         <div class="rep-row"><span class="rep-key">Reports</span><span class="rep-val">${r.total_reports}</span></div>
         <div class="rep-row"><span class="rep-key">Country</span><span class="rep-val">${r.country}</span></div>
@@ -744,51 +454,66 @@ async function lookupIP() {
   }
 }
 
-// Generate report
 async function generateReport() {
   if (!selectedAlert) return;
   document.getElementById('reportContainer').innerHTML =
     '<div class="loading"><div class="spinner"></div> Generating report...</div>';
   try {
     const r = await callTool('generate_incident_report', { alert_id: selectedAlert.alert_id });
-    const a = r.alert || {};
+    const a  = r.alert || {};
     const ti = r.threat_intelligence || {};
-    const html = `
-        <div class="rep-row"><span class="rep-key">Report ID</span><span class="rep-val">${r.report_id||'—'}</span></div>
-        <div class="rep-row"><span class="rep-key">Verdict</span><span class="rep-val" style="color:${r.verdict==='ESCALATE TO TIER-2'?'#ff4444':r.verdict==='MONITOR & INVESTIGATE'?'#ffaa00':'#00ff88'}">${r.verdict||'—'}</span></div>
-        <div class="rep-row"><span class="rep-key">Alert Type</span><span class="rep-val">${a.alert_type||'—'}</span></div>
-        <div class="rep-row"><span class="rep-key">Severity</span><span class="rep-val">${a.severity||'—'}</span></div>
-        <div class="rep-row"><span class="rep-key">Source IP</span><span class="rep-val">${a.source_ip||'—'}</span></div>
-        <div class="rep-row"><span class="rep-key">Host</span><span class="rep-val">${a.hostname||'—'}</span></div>
-        <div class="rep-row"><span class="rep-key">MITRE</span><span class="rep-val">${a.mitre_technique||'—'}</span></div>
-        <div class="rep-row"><span class="rep-key">IP Verdict</span><span class="rep-val">${ti.is_malicious?'⚠ MALICIOUS':'✓ CLEAN'}</span></div>
-        <div class="rep-row"><span class="rep-key">ISP</span><span class="rep-val">${ti.isp||'—'}</span></div>
-        <div style="margin-top:8px;font-size:11px;color:#aaa;"><b>Actions:</b><br>${(r.recommended_actions||[]).map(x=>'• '+x).join('<br>')}</div>
-    `;
-    document.getElementById('reportContainer').innerHTML = `<div class="report-content">${html}</div>`;
+    const verdictClass = r.verdict === 'ESCALATE TO TIER-2' ? 'rpt-verdict-escalate'
+                       : r.verdict === 'MONITOR & INVESTIGATE' ? 'rpt-verdict-monitor'
+                       : 'rpt-verdict-close';
+    const actions = (r.recommended_actions || [])
+      .map(x => `<div class="rpt-action-item">${x}</div>`).join('');
+    document.getElementById('reportContainer').innerHTML = `
+      <div class="report-content">
+        <div class="rpt-section">
+          <div class="rpt-section-title">Verdict</div>
+          <div class="rpt-row"><span class="rpt-key">Report ID</span><span class="rpt-val">${r.report_id || '—'}</span></div>
+          <div class="rpt-row"><span class="rpt-key">Decision</span><span class="rpt-val ${verdictClass}">${r.verdict || '—'}</span></div>
+          <div class="rpt-row"><span class="rpt-key">Generated</span><span class="rpt-val">${(r.generated_at||'').slice(0,16).replace('T',' ')}</span></div>
+        </div>
+        <div class="rpt-section">
+          <div class="rpt-section-title">Alert Details</div>
+          <div class="rpt-row"><span class="rpt-key">Type</span><span class="rpt-val">${a.alert_type || '—'}</span></div>
+          <div class="rpt-row"><span class="rpt-key">Severity</span><span class="rpt-val">${a.severity || '—'}</span></div>
+          <div class="rpt-row"><span class="rpt-key">Source IP</span><span class="rpt-val">${a.source_ip || '—'}</span></div>
+          <div class="rpt-row"><span class="rpt-key">Host</span><span class="rpt-val">${a.hostname || '—'}</span></div>
+          <div class="rpt-row"><span class="rpt-key">Protocol</span><span class="rpt-val">${a.protocol || '—'}${a.destination_port ? ':'+a.destination_port : ''}</span></div>
+          <div class="rpt-row"><span class="rpt-key">MITRE</span><span class="rpt-val">${a.mitre_technique || '—'}</span></div>
+        </div>
+        <div class="rpt-section">
+          <div class="rpt-section-title">Threat Intel</div>
+          <div class="rpt-row"><span class="rpt-key">IP Verdict</span><span class="rpt-val ${ti.is_malicious ? 'rpt-verdict-escalate' : 'rpt-verdict-close'}">${ti.is_malicious ? '⚠ MALICIOUS' : '✓ CLEAN'}</span></div>
+          <div class="rpt-row"><span class="rpt-key">Confidence</span><span class="rpt-val">${ti.confidence_score || 0}%</span></div>
+          <div class="rpt-row"><span class="rpt-key">ISP</span><span class="rpt-val">${ti.isp || '—'}</span></div>
+          <div class="rpt-row"><span class="rpt-key">TOR Node</span><span class="rpt-val">${ti.is_tor ? '🧅 Yes' : 'No'}</span></div>
+        </div>
+        <div class="rpt-section">
+          <div class="rpt-section-title">Recommended Actions</div>
+          <div class="rpt-actions">${actions}</div>
+        </div>
+      </div>`;
   } catch(e) {
-    document.getElementById('reportContainer').innerHTML =
-      `<div class="empty">Error: ${e.message}</div>`;
+    document.getElementById('reportContainer').innerHTML = `<div class="empty">Error: ${e.message}</div>`;
   }
 }
 
-// Run triage
 async function runTriage() {
   const btn = document.getElementById('triageBtn');
   btn.disabled = true;
   btn.textContent = '⏳ Triaging...';
   document.getElementById('triageInfo').textContent = 'Running automated triage...';
-
   try {
     const r = await callTool('get_critical_alerts', { hours: 24, limit: 10 });
     const alerts = r.alerts || [];
     let escalated = 0;
-
     for (const alert of alerts) {
       await callTool('update_alert_status', { alert_id: alert.alert_id, status: 'escalated' });
       escalated++;
     }
-
     showNotif(`✓ Triage complete — ${escalated} alerts escalated`);
     document.getElementById('triageInfo').textContent = `Last run: ${escalated} escalated`;
     await loadAlerts();
@@ -801,7 +526,6 @@ async function runTriage() {
   }
 }
 
-// Notification
 function showNotif(msg) {
   const n = document.createElement('div');
   n.className = 'notif';
@@ -810,11 +534,8 @@ function showNotif(msg) {
   setTimeout(() => n.remove(), 4000);
 }
 
-// Init
 loadStats();
 loadAlerts();
 </script>
 </body>
-</html>< ! - -   v 2   - - > 
- 
- 
+</html>
