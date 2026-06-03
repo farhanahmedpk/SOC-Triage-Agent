@@ -639,7 +639,7 @@ async function callTool(name, parameters = {}) {
 async function loadStats() {
   try {
     const r = await callTool('get_alert_summary');
-    document.getElementById('statTotal').textContent    = r.total_alerts || 0;
+    document.getElementById('statTotal').textContent = r.total || 0;
     document.getElementById('statCritical').textContent = r.by_severity?.Critical || 0;
     document.getElementById('statHigh').textContent     = r.by_severity?.High || 0;
     document.getElementById('statMedium').textContent   = r.by_severity?.Medium || 0;
@@ -654,7 +654,7 @@ async function loadAlerts() {
   try {
     const params = currentFilter === 'all' ? { limit: 50 } : { severity: currentFilter, limit: 50 };
     const r = await callTool('get_open_alerts', params);
-    allAlerts = r.alerts || [];
+    allAlerts = Array.isArray(r) ? r : (r.alerts || []);
     renderTable(allAlerts);
     document.getElementById('triageInfo').textContent = `${allAlerts.length} alerts loaded`;
   } catch(e) {
