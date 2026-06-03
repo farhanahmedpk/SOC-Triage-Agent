@@ -751,13 +751,13 @@ async function lookupIP() {
 // Generate report
 async function generateReport() {
   if (!selectedAlert) return;
-  const reportText = r.report_text || JSON.stringify(r, null, 2);
   document.getElementById('reportContainer').innerHTML =
-    `<div class="report-content">${reportText}</div>`;
+    '<div class="loading"><div class="spinner"></div> Generating report...</div>';
   try {
     const r = await callTool('generate_incident_report', { alert_id: selectedAlert.alert_id });
+    const reportText = r.report_text || JSON.stringify(r, null, 2);
     document.getElementById('reportContainer').innerHTML =
-      `<div class="report-content">${r.report_text}</div>`;
+      `<div class="report-content">${reportText}</div>`;
   } catch(e) {
     document.getElementById('reportContainer').innerHTML =
       `<div class="empty">Error: ${e.message}</div>`;
