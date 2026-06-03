@@ -751,8 +751,9 @@ async function lookupIP() {
 // Generate report
 async function generateReport() {
   if (!selectedAlert) return;
+  const reportText = r.report_text || JSON.stringify(r, null, 2);
   document.getElementById('reportContainer').innerHTML =
-    '<div class="loading"><div class="spinner"></div> Generating report...</div>';
+    `<div class="report-content">${reportText}</div>`;
   try {
     const r = await callTool('generate_incident_report', { alert_id: selectedAlert.alert_id });
     document.getElementById('reportContainer').innerHTML =
@@ -806,5 +807,6 @@ loadStats();
 loadAlerts();
 </script>
 </body>
-</html>< ! - -   v 2   - - >  
+</html>< ! - -   v 2   - - > 
+ 
  
