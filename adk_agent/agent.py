@@ -7,7 +7,7 @@ from google.adk.tools import url_context
 
 soc_triage_agent_google_search_agent = LlmAgent(
   name='SOC_Triage_Agent_google_search_agent',
-  model='gemini-2.0-flash-001',
+  model='gemini-2.5-flash',
   description=(
       'Agent specialized in performing Google searches.'
   ),
@@ -19,7 +19,7 @@ soc_triage_agent_google_search_agent = LlmAgent(
 )
 soc_triage_agent_url_context_agent = LlmAgent(
   name='SOC_Triage_Agent_url_context_agent',
-  model='gemini-2.0-flash-001',
+  model='gemini-2.5-flash',
   description=(
       'Agent specialized in fetching content from URLs.'
   ),
@@ -31,7 +31,7 @@ soc_triage_agent_url_context_agent = LlmAgent(
 )
 root_agent = LlmAgent(
   name='SOC_Triage_Agent',
-  model='gemini-2.0-flash-001',
+  model='gemini-2.5-flash',
   description=(
       'An AI-powered Tier-1 SOC analyst that ingests security alerts from Elasticsearch, enriches them with threat intelligence, classifies severity, and generates structured incident reports.'
   ),
@@ -41,9 +41,9 @@ root_agent = LlmAgent(
     agent_tool.AgentTool(agent=soc_triage_agent_google_search_agent),
     agent_tool.AgentTool(agent=soc_triage_agent_url_context_agent),
     McpToolset(
-      connection_params=StreamableHTTPConnectionParams(
-        url='https://soc-triage-mcp-454362298471.us-central1.run.app/mcp/tools/call',
-      ),
-    )
+    connection_params=StreamableHTTPConnectionParams(
+        url='https://soc-triage-mcp-454362298471.us-central1.run.app/mcp',
+    ),
+  ),
   ],
 )
